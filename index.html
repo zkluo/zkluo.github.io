@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/%E5%A6%82%E4%BD%95%E7%94%A8github-pages-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">如何用github pages+hexo搭建个人博客</a>
+      <a class="article-title" href="/2020/09/26/%E5%A6%82%E4%BD%95%E7%94%A8github-pages-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">如何用Github Pages+Hexo搭建个人博客</a>
     </h1>
   
 
@@ -86,7 +86,24 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是我的第一篇博客。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是我的第一篇博客。第一次尝试用<code>Github Pages</code>+<code>Hexo</code>这种方式搭建自己的个人技术博客，那么第一篇博客就介绍下建站过程吧。</p>
+<h2 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h2><ul>
+<li>NodeJs<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># follow https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;进行安装</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></li>
+<li>Git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># follow https:&#x2F;&#x2F;git-scm.com&#x2F;进行安装</span><br><span class="line">git version </span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="安装Hexo并初始化博客"><a href="#安装Hexo并初始化博客" class="headerlink" title="安装Hexo并初始化博客"></a>安装Hexo并初始化博客</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 安装Hexo</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"># 初始化</span><br><span class="line">hexo init yourBlogFolder</span><br><span class="line">cd yourBlogFolder</span><br><span class="line">npm install</span><br><span class="line"># 预览博客</span><br><span class="line">hexo -s </span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问<code>localhost:4000</code>即可看到默认的博客页面。</p>
+<h2 id="Github-Pages搭建个人网站"><a href="#Github-Pages搭建个人网站" class="headerlink" title="Github Pages搭建个人网站"></a>Github Pages搭建个人网站</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># follow https:&#x2F;&#x2F;pages.github.com&#x2F;</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;username&#x2F;username.github.io</span><br><span class="line">cd username.github.io</span><br><span class="line">echo &quot;Hello World&quot; &gt; index.html</span><br><span class="line">git add --all</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问<code>http://username.github.io</code>即可，这就是你托管在Github上的个人网站。</p>
+<h2 id="本地Hexo博客部署到Github上"><a href="#本地Hexo博客部署到Github上" class="headerlink" title="本地Hexo博客部署到Github上"></a>本地Hexo博客部署到Github上</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 安装一个部署插件</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"># 修改Hexo的配置文件_config.yaml:</span><br><span class="line">## deploy:</span><br><span class="line">##   type: git  </span><br><span class="line">##   repo:</span><br><span class="line">##   github: https:&#x2F;&#x2F;github.com&#x2F;username&#x2F;username.github.io </span><br><span class="line">##   branch: master </span><br><span class="line"># 上传</span><br><span class="line">hexo g -d </span><br></pre></td></tr></table></figure>
+
+<p>如果出现<code>Permission denied</code>的问题大概率是你本地的ssh公钥没有配置到你的Github上。这里略过。</p>
+<p>顺利的话，过一会儿再刷新<code>http://username.github.io</code>即可看到本地的博客页面出现。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>简单来讲就是这么一个过程。更多内容等我更熟悉了再补充。</p>
 
       
     </div>
@@ -181,7 +198,7 @@
       <ul>
         
           <li>
-            <a href="/2020/09/26/%E5%A6%82%E4%BD%95%E7%94%A8github-pages-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">如何用github pages+hexo搭建个人博客</a>
+            <a href="/2020/09/26/%E5%A6%82%E4%BD%95%E7%94%A8github-pages-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">如何用Github Pages+Hexo搭建个人博客</a>
           </li>
         
           <li>
