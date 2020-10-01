@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-10-01 20:59:53 / Modified: 21:41:23" itemprop="dateCreated datePublished" datetime="2020-10-01T20:59:53+08:00">2020-10-01</time>
+              <time title="Created: 2020-10-01 20:59:53 / Modified: 21:45:49" itemprop="dateCreated datePublished" datetime="2020-10-01T20:59:53+08:00">2020-10-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -195,39 +195,34 @@
       
           <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/UlBDOe/">原题地址</a></p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol>
-<li>由输入输出可知，本题不是把秋叶收藏集（字符串）进行排列，而是允许在每个位置直接进行替换，因此红叶和黄叶的总数可能会发生变化；</li>
-<li>第一感觉是和最短编辑距离那题比较像，属于典型的动归题，而且是需要建一个二维的动归数组dp的。<code>dp[i][j]表示使得包含第</code>0-i<code>个字符的子字符串满足[红、黄、红]排列且第i个字符属于状态j的最少操作次数</code>。用j==0/1/2分别表示前红/黄/后红三种状态。得分情况讨论：</li>
-</ol>
+<li><p>由输入输出可知，本题不是把秋叶收藏集（字符串）进行排列，而是允许在每个位置直接进行替换，因此红叶和黄叶的总数可能会发生变化；</p>
+</li>
+<li><p>第一感觉是和最短编辑距离那题比较像，属于典型的动归题，而且是需要建一个二维的动归数组dp的。<code>dp[i][j]表示使得包含第</code>0-i<code>个字符的子字符串满足[红、黄、红]排列且第i个字符属于状态j的最少操作次数</code>。用j==0/1/2分别表示前红/黄/后红三种状态。得分情况讨论：</p>
 <ul>
-<li>j == 0</li>
-</ul>
-<p>这种情况只能从dp[i-1][0]过来，因此状态转移方程为：</p>
+<li><p>j == 0</p>
+<p>  这种情况只能从dp[i-1][0]过来，因此状态转移方程为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">op &#x3D; 0 if leaves[i] &#x3D;&#x3D; &#39;r&#39; else 1 # 表明i这个位置变成红色需要的操作次数</span><br><span class="line">dp[i][j] &#x3D; dp[i-1][0] + op</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>j == 1</li>
-</ul>
+</li>
+<li><p>j == 1</p>
 <p>这种情况既可以从dp[i-1][0]过来，也可以从dp[i-1][1]过来，取最短路径即可。因此状态转移方程为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">op &#x3D; 1 if leaves[i] &#x3D;&#x3D; &#39;r&#39; else 0 # 表明i这个位置变成黄色需要的操作次数</span><br><span class="line">dp[i][j] &#x3D; min(dp[i-1][0], dp[i-1][1]) + op</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>j == 2</li>
-</ul>
+</li>
+<li><p>j == 2</p>
 <p>这种情况既可以从dp[i-1][1]过来，也可以从dp[i-1][2]过来，取最短路径即可。因此状态转移方程为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">op &#x3D; 0 if leaves[i] &#x3D;&#x3D; &#39;r&#39; else 1 # 表明i这个位置变成红色需要的操作次数</span><br><span class="line">dp[i][j] &#x3D; min(dp[i-1][1], dp[i-1][2]) + op</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>i &lt; j</li>
-</ul>
+</li>
+<li><p>i &lt; j</p>
 <p>一种特殊情况是i &lt; j，在这种情况下，子字符串长度不够，在第i片树叶必须是状态j的前提下，不可能满足各部分树叶数量&gt;=1的条件，因此不可取。因此状态转移方程为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] &#x3D;&#x3D; len(leaves) + 1 # 因为最多进行len(leaves)次操作一定能调整完毕，所以贪心原则下不可能选择这样的路径，也就表示了&quot;不可取&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>i == 0</li>
-</ul>
+</li>
+<li><p>i == 0</p>
 <p>另一种特殊情况是i==0时的边界条件。这时只有j==0是有效的，因此状态转移方程为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">op &#x3D; 0 if leaves[i] &#x3D;&#x3D; &#39;r&#39; else 1 # 表明i这个位置变成红色需要的操作次数</span><br><span class="line">dp[0][0] &#x3D; op</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+</li>
+</ol>
 <h1 id="Python代码"><a href="#Python代码" class="headerlink" title="Python代码"></a>Python代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minimumOperations</span>(<span class="params">self, leaves</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type leaves: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line">        dp = np.zeros((len(leaves), <span class="number">3</span>))</span><br><span class="line">        h, w = dp.shape</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(h):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(w):</span><br><span class="line">                <span class="keyword">if</span> i &lt; j: </span><br><span class="line">                    dp[i][j] = h + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">and</span> j == <span class="number">0</span>:</span><br><span class="line">                    dp[i][j] = <span class="number">0</span> <span class="keyword">if</span> leaves[i]==<span class="string">&#x27;r&#x27;</span> <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">                        op = <span class="number">0</span> <span class="keyword">if</span> leaves[i] == <span class="string">&#x27;r&#x27;</span> <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">                        dp[i][j] = dp[i<span class="number">-1</span>][<span class="number">0</span>] + op</span><br><span class="line">                    <span class="keyword">elif</span> j == <span class="number">1</span>:</span><br><span class="line">                        op = <span class="number">1</span> <span class="keyword">if</span> leaves[i] == <span class="string">&#x27;r&#x27;</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">                        dp[i][j] = min(dp[i<span class="number">-1</span>][<span class="number">0</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>]) + op </span><br><span class="line">                    <span class="keyword">else</span>: </span><br><span class="line">                        op = <span class="number">0</span> <span class="keyword">if</span> leaves[i] == <span class="string">&#x27;r&#x27;</span> <span class="keyword">else</span> <span class="number">1</span></span><br><span class="line">                        dp[i][j] = min(dp[i<span class="number">-1</span>][<span class="number">1</span>], dp[i<span class="number">-1</span>][<span class="number">2</span>]) + op </span><br><span class="line">        <span class="keyword">return</span> int(dp[h<span class="number">-1</span>][<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
 
 
