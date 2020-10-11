@@ -28,7 +28,7 @@
 <meta property="og:description" content="题目原题地址 解题思路 由输入输出可知，本题不是把秋叶收藏集（字符串）进行排列，而是允许在每个位置直接进行替换，因此红叶和黄叶的总数可能会发生变化；  第一感觉是和最短编辑距离那题比较像，属于典型的动归题，而且是需要建一个二维的动归数组dp的。dp[i][j]表示使得包含第0-i个字符的子字符串满足[红、黄、红]排列且第i个字符属于状态j的最少操作次数。用j&#x3D;&#x3D;0&#x2F;1&#x2F;2分别表示前红&#x2F;黄&#x2F;后红三种">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-01T12:59:53.000Z">
-<meta property="article:modified_time" content="2020-10-01T13:47:54.900Z">
+<meta property="article:modified_time" content="2020-10-01T13:49:01.064Z">
 <meta property="article:author" content="zhikun.luo">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-10-01 20:59:53 / Modified: 21:47:54" itemprop="dateCreated datePublished" datetime="2020-10-01T20:59:53+08:00">2020-10-01</time>
+              <time title="Created: 2020-10-01 20:59:53 / Modified: 21:49:01" itemprop="dateCreated datePublished" datetime="2020-10-01T20:59:53+08:00">2020-10-01</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -224,6 +224,7 @@
 <p>另一种特殊情况是i==0时的边界条件。这时只有j==0是有效的，因此状态转移方程为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">op &#x3D; 0 if leaves[i] &#x3D;&#x3D; &#39;r&#39; else 1 # 表明i这个位置变成红色需要的操作次数</span><br><span class="line">dp[0][0] &#x3D; op</span><br></pre></td></tr></table></figure>
 
+
 </li>
 </ul>
 </li>
@@ -251,7 +252,10 @@
     <a href="/2020/09/29/R-CNN/" rel="prev" title="Mask R-CNN">
       <i class="fa fa-chevron-left"></i> Mask R-CNN
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/11/%E3%80%90Leetcode-416%E3%80%91%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/" rel="next" title="【Leetcode-416】分割等和子集">
+      【Leetcode-416】分割等和子集 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -324,7 +328,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

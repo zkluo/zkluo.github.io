@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前言这是我的第一篇博客。第一次尝试用Github Pages+Hexo这种方式搭建自己的个人技术博客，那么第一篇博客就介绍下建站过程吧。 依赖环境 NodeJs123# follow https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;进行安装node -vnpm -v Git12# follow https:&#x2F;&#x2F;git-scm.com&amp;#x2F">
+  <meta name="description" content="题目原题地址 解题思路转换成类似0-1背包问题。背包问题要求所选物品总重不超过背包承重，而这里相当于必须等于数组和的一半。因此可以用动归来做。对于边界情况，分情况讨论如下：  len(nums) &lt; 2 此时不可能拆分出两个子集，直接返回False。  sum(nums) % 2 !&#x3D; 0  此时数组和为奇数，不可能拆分出两个元素和相同的子集，直接返回False。  其他情况  建立动归数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何用Github Pages+Hexo搭建个人博客">
-<meta property="og:url" content="http://example.com/2020/09/26/%E5%A6%82%E4%BD%95%E7%94%A8github-pages-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="【Leetcode-416】分割等和子集">
+<meta property="og:url" content="http://example.com/2020/10/11/%E3%80%90Leetcode-416%E3%80%91%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/index.html">
 <meta property="og:site_name" content="zkluo的个人博客">
-<meta property="og:description" content="前言这是我的第一篇博客。第一次尝试用Github Pages+Hexo这种方式搭建自己的个人技术博客，那么第一篇博客就介绍下建站过程吧。 依赖环境 NodeJs123# follow https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;进行安装node -vnpm -v Git12# follow https:&#x2F;&#x2F;git-scm.com&amp;#x2F">
+<meta property="og:description" content="题目原题地址 解题思路转换成类似0-1背包问题。背包问题要求所选物品总重不超过背包承重，而这里相当于必须等于数组和的一半。因此可以用动归来做。对于边界情况，分情况讨论如下：  len(nums) &lt; 2 此时不可能拆分出两个子集，直接返回False。  sum(nums) % 2 !&#x3D; 0  此时数组和为奇数，不可能拆分出两个元素和相同的子集，直接返回False。  其他情况  建立动归数组">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-26T15:42:56.000Z">
-<meta property="article:modified_time" content="2020-09-29T13:15:35.501Z">
+<meta property="article:published_time" content="2020-10-11T12:35:42.000Z">
+<meta property="article:modified_time" content="2020-10-11T13:01:31.713Z">
 <meta property="article:author" content="zhikun.luo">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/09/26/%E5%A6%82%E4%BD%95%E7%94%A8github-pages-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+<link rel="canonical" href="http://example.com/2020/10/11/%E3%80%90Leetcode-416%E3%80%91%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>如何用Github Pages+Hexo搭建个人博客 | zkluo的个人博客</title>
+  <title>【Leetcode-416】分割等和子集 | zkluo的个人博客</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/26/%E5%A6%82%E4%BD%95%E7%94%A8github-pages-hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/11/%E3%80%90Leetcode-416%E3%80%91%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          如何用Github Pages+Hexo搭建个人博客
+          【Leetcode-416】分割等和子集
         </h1>
 
         <div class="post-meta">
@@ -172,23 +172,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-09-26 23:42:56" itemprop="dateCreated datePublished" datetime="2020-09-26T23:42:56+08:00">2020-09-26</time>
+              <time title="Created: 2020-10-11 20:35:42 / Modified: 21:01:31" itemprop="dateCreated datePublished" datetime="2020-10-11T20:35:42+08:00">2020-10-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-29 21:15:35" itemprop="dateModified" datetime="2020-09-29T21:15:35+08:00">2020-09-29</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9D%82/" itemprop="url" rel="index"><span itemprop="name">杂</span></a>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
@@ -203,24 +197,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这是我的第一篇博客。第一次尝试用<code>Github Pages</code>+<code>Hexo</code>这种方式搭建自己的个人技术博客，那么第一篇博客就介绍下建站过程吧。</p>
-<h2 id="依赖环境"><a href="#依赖环境" class="headerlink" title="依赖环境"></a>依赖环境</h2><ul>
-<li>NodeJs<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># follow https:&#x2F;&#x2F;nodejs.org&#x2F;en&#x2F;进行安装</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></li>
-<li>Git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># follow https:&#x2F;&#x2F;git-scm.com&#x2F;进行安装</span><br><span class="line">git version </span><br></pre></td></tr></table></figure>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/partition-equal-subset-sum/">原题地址</a></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>转换成类似<code>0-1背包问题</code>。背包问题要求所选物品总重不超过背包承重，而这里相当于必须等于数组和的一半。因此可以用动归来做。对于边界情况，分情况讨论如下：</p>
+<ul>
+<li><p>len(nums) &lt; 2<br> 此时不可能拆分出两个子集，直接返回False。</p>
+</li>
+<li><p>sum(nums) % 2 != 0<br>  此时数组和为奇数，不可能拆分出两个元素和相同的子集，直接返回False。</p>
+</li>
+<li><p>其他情况<br>  建立动归数组<code>dp[i][j]</code>，表示<code>0-i</code>子数组能否分割出元素和为<code>j</code>的子集。这里又要讨论几种情况：</p>
+<ul>
+<li>dp[i][0]<br>  边界情况1，全为True</li>
+<li>dp[0][j]<br>  边界情况2，只有当j==nums[0]时才为True</li>
+<li>dp[i][j], nums[i] &gt; j<br>  dp[i][j]只可能来自dp[i-1][j]，状态转移方程为：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i<span class="number">-1</span>][j]</span><br></pre></td></tr></table></figure></li>
+<li>dp[i][j], nums[i] &lt;= j<br>  dp[i][j]既有可能来自dp[i-1][j]，也有可能来自dp[i-1][j-nums[i]]，因此状态转移方程为：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = dp[i<span class="number">-1</span>][j] <span class="keyword">or</span> dp[i<span class="number">-1</span>][j-nums[i]]</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h2 id="安装Hexo并初始化博客"><a href="#安装Hexo并初始化博客" class="headerlink" title="安装Hexo并初始化博客"></a>安装Hexo并初始化博客</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 安装Hexo</span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"># 初始化</span><br><span class="line">hexo init yourBlogFolder</span><br><span class="line">cd yourBlogFolder</span><br><span class="line">npm install</span><br><span class="line"># 预览博客</span><br><span class="line">hexo -s </span><br></pre></td></tr></table></figure>
-
-<p>浏览器访问<code>localhost:4000</code>即可看到默认的博客页面。</p>
-<h2 id="Github-Pages搭建个人网站"><a href="#Github-Pages搭建个人网站" class="headerlink" title="Github Pages搭建个人网站"></a>Github Pages搭建个人网站</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># follow https:&#x2F;&#x2F;pages.github.com&#x2F;</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;username&#x2F;username.github.io</span><br><span class="line">cd username.github.io</span><br><span class="line">echo &quot;Hello World&quot; &gt; index.html</span><br><span class="line">git add --all</span><br><span class="line">git commit -m &quot;Initial commit&quot;</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
-<p>浏览器访问<code>http://username.github.io</code>即可，这就是你托管在Github上的个人网站。</p>
-<h2 id="本地Hexo博客部署到Github上"><a href="#本地Hexo博客部署到Github上" class="headerlink" title="本地Hexo博客部署到Github上"></a>本地Hexo博客部署到Github上</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 安装一个部署插件</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"># 修改Hexo的配置文件_config.yaml:</span><br><span class="line">## deploy:</span><br><span class="line">##   type: git  </span><br><span class="line">##   repo:</span><br><span class="line">##   github: https:&#x2F;&#x2F;github.com&#x2F;username&#x2F;username.github.io </span><br><span class="line">##   branch: master </span><br><span class="line"># 上传</span><br><span class="line">hexo g -d </span><br></pre></td></tr></table></figure>
-
-<p>如果出现<code>Permission denied</code>的问题大概率是你本地的ssh公钥没有配置到你的Github上。这里略过。</p>
-<p>顺利的话，过一会儿再刷新<code>http://username.github.io</code>即可看到本地的博客页面出现。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>简单来讲就是这么一个过程。更多内容等我更熟悉了再补充。</p>
+</li>
+</ul>
+<h2 id="Python代码"><a href="#Python代码" class="headerlink" title="Python代码"></a>Python代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">canPartition</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) &lt; <span class="number">2</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        nums_sum = sum(nums)</span><br><span class="line">        <span class="keyword">if</span> nums_sum % <span class="number">2</span> != <span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        target = nums_sum // <span class="number">2</span></span><br><span class="line">        <span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line">        dp = np.zeros((len(nums), target+<span class="number">1</span>))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(target+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> j == nums[<span class="number">0</span>]:</span><br><span class="line">                dp[<span class="number">0</span>][j] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, target+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> nums[i] &gt; j:</span><br><span class="line">                    dp[i][j] = dp[i<span class="number">-1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j] = dp[i<span class="number">-1</span>][j] <span class="keyword">or</span> dp[i<span class="number">-1</span>][j-nums[i]]</span><br><span class="line">        <span class="keyword">return</span> bool(dp[<span class="number">-1</span>][<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -236,13 +231,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/26/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2020/10/01/%E3%80%90LCP-19%E3%80%91%E7%A7%8B%E5%8F%B6%E6%94%B6%E8%97%8F%E7%BA%A7/" rel="prev" title="【LCP-19】秋叶收藏集">
+      <i class="fa fa-chevron-left"></i> 【LCP-19】秋叶收藏集
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/29/R-CNN/" rel="next" title="Mask R-CNN">
-      Mask R-CNN <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -301,7 +293,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">依赖环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Hexo%E5%B9%B6%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8D%9A%E5%AE%A2"><span class="nav-number">3.</span> <span class="nav-text">安装Hexo并初始化博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github-Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99"><span class="nav-number">4.</span> <span class="nav-text">Github Pages搭建个人网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0Hexo%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0Github%E4%B8%8A"><span class="nav-number">5.</span> <span class="nav-text">本地Hexo博客部署到Github上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">Python代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
